@@ -1,4 +1,5 @@
 PODS:
+  - ActiveLabel (1.1.0)
   - Firebase/Auth (6.9.0):
     - Firebase/CoreOnly
     - FirebaseAuth (~> 6.2.3)
@@ -92,6 +93,7 @@ PODS:
   - SDWebImage/Core (5.1.1)
 
 DEPENDENCIES:
+  - ActiveLabel
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
@@ -100,6 +102,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - ActiveLabel
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
@@ -120,6 +123,7 @@ SPEC REPOS:
     - SDWebImage
 
 SPEC CHECKSUMS:
+  ActiveLabel: 5e3f4de79a1952d4604b845a0610d4776e4b82b3
   Firebase: 2d750c54cda57d5a6ae31212cfe5cc813c6be7e4
   FirebaseAnalytics: 5d9ccbf46ed25d3ec9304d263f85bddf1e93e2d2
   FirebaseAuth: e7f86c2dfc57281cd01f7da5e4b40e01e4510a4a
@@ -139,6 +143,6 @@ SPEC CHECKSUMS:
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   SDWebImage: 96d7f03415ccb28d299d765f93557ff8a617abd8
 
-PODFILE CHECKSUM: 988c3ec1477a46ffe59d8b2c35bf888d13a95233
+PODFILE CHECKSUM: 1361b134bb081cae69a6c9adc794ba316ac7c813
 
 COCOAPODS: 1.5.3
