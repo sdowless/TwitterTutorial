@@ -72,7 +72,6 @@ class MainTabController: UITabBarController {
     // MARK: - Selectors
     
     @objc func actionButtonTapped() {
-        
         let controller: UIViewController
         
         switch buttonConfig {

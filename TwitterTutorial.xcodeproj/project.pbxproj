@@ -14,6 +14,14 @@
 		2302B35F23E0F5AC00A68B17 /* TweetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2302B35E23E0F5AC00A68B17 /* TweetService.swift */; };
 		2302B36123E0F91F00A68B17 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2302B36023E0F91F00A68B17 /* Tweet.swift */; };
 		2302B36323E0FDA600A68B17 /* TweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2302B36223E0FDA600A68B17 /* TweetCell.swift */; };
+		231ADE54242A932E00298B1D /* MessagingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231ADE53242A932E00298B1D /* MessagingService.swift */; };
+		231ADE57242A936B00298B1D /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231ADE56242A936B00298B1D /* ChatCell.swift */; };
+		231ADE59242A938100298B1D /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231ADE58242A938100298B1D /* Message.swift */; };
+		231ADE5F242A941A00298B1D /* ConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231ADE5E242A941A00298B1D /* ConversationCell.swift */; };
+		231ADE61242A947100298B1D /* MessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231ADE60242A947100298B1D /* MessageViewModel.swift */; };
+		231ADE63242A951C00298B1D /* CustomInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231ADE62242A951C00298B1D /* CustomInputAccessoryView.swift */; };
+		231ADE65242A956200298B1D /* ConversationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231ADE64242A956200298B1D /* ConversationViewModel.swift */; };
+		231ADE6B242A961600298B1D /* ChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231ADE6A242A961600298B1D /* ChatController.swift */; };
 		2347DA5F23F9ED7200B64686 /* EditProfileFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2347DA5E23F9ED7200B64686 /* EditProfileFooter.swift */; };
 		236909BA23ECF837004998F6 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236909B923ECF837004998F6 /* UserCell.swift */; };
 		236909BC23ED3EBA004998F6 /* TweetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236909BB23ED3EBA004998F6 /* TweetController.swift */; };
@@ -65,6 +73,14 @@
 		2302B35E23E0F5AC00A68B17 /* TweetService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetService.swift; sourceTree = "<group>"; };
 		2302B36023E0F91F00A68B17 /* Tweet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 		2302B36223E0FDA600A68B17 /* TweetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetCell.swift; sourceTree = "<group>"; };
+		231ADE53242A932E00298B1D /* MessagingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingService.swift; sourceTree = "<group>"; };
+		231ADE56242A936B00298B1D /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
+		231ADE58242A938100298B1D /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		231ADE5E242A941A00298B1D /* ConversationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCell.swift; sourceTree = "<group>"; };
+		231ADE60242A947100298B1D /* MessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewModel.swift; sourceTree = "<group>"; };
+		231ADE62242A951C00298B1D /* CustomInputAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputAccessoryView.swift; sourceTree = "<group>"; };
+		231ADE64242A956200298B1D /* ConversationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewModel.swift; sourceTree = "<group>"; };
+		231ADE6A242A961600298B1D /* ChatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatController.swift; sourceTree = "<group>"; };
 		2347DA5E23F9ED7200B64686 /* EditProfileFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileFooter.swift; sourceTree = "<group>"; };
 		236909B923ECF837004998F6 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		236909BB23ED3EBA004998F6 /* TweetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetController.swift; sourceTree = "<group>"; };
@@ -122,6 +138,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		231ADE55242A935900298B1D /* Messaging */ = {
+			isa = PBXGroup;
+			children = (
+				231ADE56242A936B00298B1D /* ChatCell.swift */,
+				231ADE5E242A941A00298B1D /* ConversationCell.swift */,
+				231ADE62242A951C00298B1D /* CustomInputAccessoryView.swift */,
+			);
+			path = Messaging;
+			sourceTree = "<group>";
+		};
+		231ADE66242A95D200298B1D /* Messaging */ = {
+			isa = PBXGroup;
+			children = (
+				23A0000123C6795A0098D8EC /* ConversationsController.swift */,
+				231ADE6A242A961600298B1D /* ChatController.swift */,
+			);
+			path = Messaging;
+			sourceTree = "<group>";
+		};
+		231ADE67242A95D700298B1D /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				23AF9DD223F4BA03006E34A1 /* EditProfileController.swift */,
+				23B391F523E4FD0400D3D0E0 /* ProfileController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		23A0FFBB23C6703B0098D8EC = {
 			isa = PBXGroup;
 			children = (
@@ -178,6 +222,7 @@
 				2302B35623DF81FB00A68B17 /* UserService.swift */,
 				2302B35E23E0F5AC00A68B17 /* TweetService.swift */,
 				236909CB23F20C71004998F6 /* NotificationService.swift */,
+				231ADE53242A932E00298B1D /* MessagingService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -185,16 +230,15 @@
 		23A0FFF523C676260098D8EC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				231ADE67242A95D700298B1D /* Profile */,
+				231ADE66242A95D200298B1D /* Messaging */,
 				23F80CF023CB788A00AABB74 /* Authentication */,
 				23A0FFF923C676CB0098D8EC /* MainTabController.swift */,
 				23A0FFFB23C6791E0098D8EC /* FeedController.swift */,
 				23A0FFFD23C679480098D8EC /* ExploreController.swift */,
 				23A0FFFF23C679510098D8EC /* NotificationsController.swift */,
-				23A0000123C6795A0098D8EC /* ConversationsController.swift */,
 				2302B35A23E0CED400A68B17 /* UploadTweetController.swift */,
-				23B391F523E4FD0400D3D0E0 /* ProfileController.swift */,
 				236909BB23ED3EBA004998F6 /* TweetController.swift */,
-				23AF9DD223F4BA03006E34A1 /* EditProfileController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -208,6 +252,8 @@
 				236909C623EF349A004998F6 /* ActionSheetViewModel.swift */,
 				236909CF23F21977004998F6 /* NotificationViewModel.swift */,
 				23AF9DD723F4BE7B006E34A1 /* EditProfileViewModel.swift */,
+				231ADE60242A947100298B1D /* MessageViewModel.swift */,
+				231ADE64242A956200298B1D /* ConversationViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -215,6 +261,7 @@
 		23A0FFF723C676290098D8EC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				231ADE55242A935900298B1D /* Messaging */,
 				23AF9DD423F4BC08006E34A1 /* Profile */,
 				2302B35C23E0F12D00A68B17 /* InputTextView.swift */,
 				2302B36223E0FDA600A68B17 /* TweetCell.swift */,
@@ -232,6 +279,7 @@
 				2302B35823DF864200A68B17 /* User.swift */,
 				2302B36023E0F91F00A68B17 /* Tweet.swift */,
 				236909C923F20961004998F6 /* Notification.swift */,
+				231ADE58242A938100298B1D /* Message.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -418,16 +466,21 @@
 				23A0FFC823C6703B0098D8EC /* AppDelegate.swift in Sources */,
 				236909D023F21977004998F6 /* NotificationViewModel.swift in Sources */,
 				23F80CEF23CB727F00AABB74 /* Extensions.swift in Sources */,
+				231ADE59242A938100298B1D /* Message.swift in Sources */,
+				231ADE6B242A961600298B1D /* ChatController.swift in Sources */,
 				236909BC23ED3EBA004998F6 /* TweetController.swift in Sources */,
+				231ADE57242A936B00298B1D /* ChatCell.swift in Sources */,
 				23B391F623E4FD0400D3D0E0 /* ProfileController.swift in Sources */,
 				236909C123EF1FB2004998F6 /* UploadTweetViewModel.swift in Sources */,
 				23A982B823E73ECA007EC32A /* ProfileHeader.swift in Sources */,
 				23AF9DDA23F4BECC006E34A1 /* EditProfileCell.swift in Sources */,
 				2302B36323E0FDA600A68B17 /* TweetCell.swift in Sources */,
 				23A0FFFE23C679480098D8EC /* ExploreController.swift in Sources */,
+				231ADE65242A956200298B1D /* ConversationViewModel.swift in Sources */,
 				236909CA23F20961004998F6 /* Notification.swift in Sources */,
 				239144B323D63F91007492B2 /* AuthService.swift in Sources */,
 				2374CDF323E75268001BF228 /* ProfileHeaderViewModel.swift in Sources */,
+				231ADE63242A951C00298B1D /* CustomInputAccessoryView.swift in Sources */,
 				2302B35B23E0CED400A68B17 /* UploadTweetController.swift in Sources */,
 				2302B35923DF864200A68B17 /* User.swift in Sources */,
 				23AF9DD623F4BC26006E34A1 /* EditProfileHeader.swift in Sources */,
@@ -441,11 +494,14 @@
 				236909CE23F21430004998F6 /* NotificationCell.swift in Sources */,
 				23AF9DD823F4BE7B006E34A1 /* EditProfileViewModel.swift in Sources */,
 				2347DA5F23F9ED7200B64686 /* EditProfileFooter.swift in Sources */,
+				231ADE61242A947100298B1D /* MessageViewModel.swift in Sources */,
 				23F80CF423CB78E800AABB74 /* RegistrationController.swift in Sources */,
 				23A0FFFC23C6791E0098D8EC /* FeedController.swift in Sources */,
 				23A982BA23E74427007EC32A /* ProfileFilterView.swift in Sources */,
 				23E0845D23D38DD600DEFC65 /* Constants.swift in Sources */,
 				236909C323EF2C81004998F6 /* ActionSheetLauncher.swift in Sources */,
+				231ADE5F242A941A00298B1D /* ConversationCell.swift in Sources */,
+				231ADE54242A932E00298B1D /* MessagingService.swift in Sources */,
 				2302B36123E0F91F00A68B17 /* Tweet.swift in Sources */,
 				2302B35F23E0F5AC00A68B17 /* TweetService.swift in Sources */,
 			);

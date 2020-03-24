@@ -15,11 +15,16 @@ enum SearchControllerConfiguration {
     case userSearch
 }
 
+protocol SearchControllerDelegate: class {
+    func controller(_ controller: SearchController, wantsToStartChatWith user: User)
+}
+
 class SearchController: UITableViewController {
     
     // MARK: - Properties
     
     private let config: SearchControllerConfiguration
+    weak var delegate: SearchControllerDelegate?
     
     private var users = [User]() {
         didSet { tableView.reloadData() }
@@ -115,8 +120,14 @@ extension SearchController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let user = inSearchMode ? filteredUsers[indexPath.row] : users[indexPath.row]
-        let controller = ProfileController(user: user)
-        navigationController?.pushViewController(controller, animated: true)
+        
+        switch config {
+        case .messages:
+            delegate?.controller(self, wantsToStartChatWith: user)
+        case .userSearch:
+            let controller = ProfileController(user: user)
+            navigationController?.pushViewController(controller, animated: true)
+        }
     }
 }
 
