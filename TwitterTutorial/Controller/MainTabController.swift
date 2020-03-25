@@ -22,10 +22,8 @@ class MainTabController: UITabBarController {
     
     var user: User? {
         didSet {
-            guard let nav = viewControllers?[0] as? UINavigationController else { return }
-            guard let feed = nav.viewControllers.first as? FeedController else { return }
-            
-            feed.user = user
+            guard let controller = viewControllers?[0] as? ContainerController else { return }
+            controller.user = user
         }
     }
     
@@ -83,7 +81,7 @@ class MainTabController: UITabBarController {
             guard let user = user else { return }
             let controller = UploadTweetController(user: user, config: .tweet)
             presentController(controller)
-        }        
+        }
     }
     
     // MARK: - Helpers
@@ -105,8 +103,8 @@ class MainTabController: UITabBarController {
     
     func configureViewControllers() {
         
-        let feed = FeedController(collectionViewLayout: UICollectionViewFlowLayout())
-        let nav1 = templateNavigationController(image: UIImage(named: "home_unselected"), rootViewController: feed)
+        let feedContainer = ContainerController()
+        feedContainer.tabBarItem.image = #imageLiteral(resourceName: "home_unselected")
         
         let explore = SearchController(config: .userSearch)
         let nav2 = templateNavigationController(image: UIImage(named: "search_unselected"), rootViewController: explore)
@@ -117,7 +115,7 @@ class MainTabController: UITabBarController {
         let conversations = ConversationsController()
         let nav4 = templateNavigationController(image: UIImage(named: "ic_mail_outline_white_2x-1"), rootViewController: conversations)
         
-        viewControllers = [nav1, nav2, nav3, nav4]
+        viewControllers = [feedContainer, nav2, nav3, nav4]
     }
     
     func templateNavigationController(image: UIImage?, rootViewController: UIViewController) -> UINavigationController {

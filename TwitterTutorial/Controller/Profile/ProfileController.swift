@@ -90,6 +90,7 @@ class ProfileController: UICollectionViewController {
     }
     
     func fetchUserStats() {
+        guard user.uid != Auth.auth().currentUser?.uid else { return }
         UserService.shared.fetchUserStats(uid: user.uid) { stats in
             self.user.stats = stats
             self.collectionView.reloadData()

@@ -11,9 +11,15 @@ import SDWebImage
 
 private let reuseIdentifier = "TweetCell"
 
+protocol FeedControllerDelegate: class {
+    func handleMenuToggle()
+}
+
 class FeedController: UICollectionViewController {
     
     // MARK: - Properties
+    
+    weak var delegate: FeedControllerDelegate?
     
     var user: User? {
         didSet { configureLeftBarButton() }
@@ -44,9 +50,7 @@ class FeedController: UICollectionViewController {
     }
     
     @objc func handleProfileImageTap() {
-        guard let user = user else { return }
-        let controller = ProfileController(user: user)
-        navigationController?.pushViewController(controller, animated: true)
+        delegate?.handleMenuToggle()
     }
     
     // MARK: - API

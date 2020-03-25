@@ -187,8 +187,8 @@ class ProfileHeader: UICollectionReusableView {
         profileImageView.sd_setImage(with: user.profileImageUrl)
         
         editProfileFollowButton.setTitle(viewModel.actionButtonTitle, for: .normal)
-        followingLabel.attributedText = viewModel.followingString
-        followersLabel.attributedText = viewModel.followersString
+        followingLabel.attributedText = viewModel.followingString(valueColor: .black, textColor: .lightGray)
+        followersLabel.attributedText = viewModel.followersString(valueColor: .black, textColor: .lightGray)
         
         bioLabel.text = user.bio
         

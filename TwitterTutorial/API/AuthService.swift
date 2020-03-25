@@ -58,4 +58,14 @@ struct AuthService {
             }
         }
     }
+    
+    func signOut(completion: @escaping(Bool) -> Void) {
+        do {
+            try Auth.auth().signOut()
+            completion(true)
+        } catch let error {
+            print(error)
+            completion(false)
+        }
+    }
 }
