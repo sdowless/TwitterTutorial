@@ -29,7 +29,8 @@ class ConversationsController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        configureNavigationBar(withTitle: "Messages", prefersLargeTitles: true)
+        guard let tab = self.tabBarController as? MainTabController else { return }
+        tab.actionButton.isHidden = false
     }
     
     // MARK: - Selectors
@@ -37,26 +38,22 @@ class ConversationsController: UIViewController {
     // MARK: - API
     
     func fetchConversations() {
-//        Service.fetchConversations { conversations in
-//            conversations.forEach { conversation in
-//                let message = conversation.message
-//                self.conversationsDictionary[message.chatPartnerId] = conversation
-//            }
-//
-//            self.conversations = Array(self.conversationsDictionary.values)
-//            self.tableView.reloadData()
-//        }
-        
+        MessagingService.shared.fetchConversations { conversations in
+            conversations.forEach { conversation in
+                let message = conversation.message
+                self.conversationsDictionary[message.chatPartnerId] = conversation
+            }
+
+            self.conversations = Array(self.conversationsDictionary.values)
+            self.tableView.reloadData()
+        }
     }
     
     // MARK: - Helpers
     
     func configureUI() {
-        view.backgroundColor = .white
-        configureTableView()
-    }
-    
-    func configureTableView() {
+        navigationItem.title = "Messages"
+        
         tableView.backgroundColor = .white
         tableView.rowHeight = 80
         tableView.register(ConversationCell.self, forCellReuseIdentifier: reuseIdentifier)

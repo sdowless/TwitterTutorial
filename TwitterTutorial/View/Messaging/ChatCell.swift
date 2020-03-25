@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class MessageCell: UICollectionViewCell {
 
@@ -92,5 +93,8 @@ class MessageCell: UICollectionViewCell {
 
         profileImageView.isHidden = viewModel.shouldHideProfileImage
         profileImageView.sd_setImage(with: message.user?.profileImageUrl)
+        
+        print("DEBUG: \(message.isFromCurrentUser)")
+        print("DEBUG: \(Auth.auth().currentUser?.uid)")
     }
 }

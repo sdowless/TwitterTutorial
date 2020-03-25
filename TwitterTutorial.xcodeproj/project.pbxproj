@@ -166,6 +166,33 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
+		235794D8242BA8D000D738CE /* Messaging */ = {
+			isa = PBXGroup;
+			children = (
+				231ADE60242A947100298B1D /* MessageViewModel.swift */,
+				231ADE64242A956200298B1D /* ConversationViewModel.swift */,
+			);
+			path = Messaging;
+			sourceTree = "<group>";
+		};
+		235794D9242BA8E000D738CE /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				23AF9DD723F4BE7B006E34A1 /* EditProfileViewModel.swift */,
+				2374CDF223E75268001BF228 /* ProfileHeaderViewModel.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		235794DA242BA8F400D738CE /* Tweets */ = {
+			isa = PBXGroup;
+			children = (
+				23B391F323E4F5EC00D3D0E0 /* TweetViewModel.swift */,
+				236909C023EF1FB2004998F6 /* UploadTweetViewModel.swift */,
+			);
+			path = Tweets;
+			sourceTree = "<group>";
+		};
 		23A0FFBB23C6703B0098D8EC = {
 			isa = PBXGroup;
 			children = (
@@ -246,14 +273,11 @@
 		23A0FFF623C676280098D8EC /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				23B391F323E4F5EC00D3D0E0 /* TweetViewModel.swift */,
-				2374CDF223E75268001BF228 /* ProfileHeaderViewModel.swift */,
-				236909C023EF1FB2004998F6 /* UploadTweetViewModel.swift */,
+				235794DA242BA8F400D738CE /* Tweets */,
+				235794D9242BA8E000D738CE /* Profile */,
+				235794D8242BA8D000D738CE /* Messaging */,
 				236909C623EF349A004998F6 /* ActionSheetViewModel.swift */,
 				236909CF23F21977004998F6 /* NotificationViewModel.swift */,
-				23AF9DD723F4BE7B006E34A1 /* EditProfileViewModel.swift */,
-				231ADE60242A947100298B1D /* MessageViewModel.swift */,
-				231ADE64242A956200298B1D /* ConversationViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";

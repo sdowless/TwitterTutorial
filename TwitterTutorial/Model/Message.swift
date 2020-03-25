@@ -24,9 +24,9 @@ struct Message {
     }
     
     init(dictionary: [String: Any]) {
-        self.text = dictionary["text"] as? String ?? ""
-        self.toId = dictionary["toId"] as? String ?? ""
-        self.fromId = dictionary["fromId"] as? String ?? ""
+        self.text = dictionary["messageText"] as? String ?? ""
+        self.toId = dictionary["toID"] as? String ?? ""
+        self.fromId = dictionary["fromID"] as? String ?? ""
         self.isFromCurrentUser = fromId == Auth.auth().currentUser?.uid
         
         if let timestamp = dictionary[KEY_TIMESTAMP] as? Double {

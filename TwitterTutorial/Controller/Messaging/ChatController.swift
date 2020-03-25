@@ -16,7 +16,6 @@ class ChatController: UICollectionViewController {
     
     private let user: User
     private var messages = [Message]()
-    var fromCurrentUser = false
     
     private lazy var customInputView: CustomInputAccessoryView = {
         let iv = CustomInputAccessoryView(frame: CGRect(x: 0, y: 0,
@@ -40,6 +39,12 @@ class ChatController: UICollectionViewController {
         super.viewDidLoad()
         configureUI()
         fetchMessages()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        guard let tab = self.tabBarController as? MainTabController else { return }
+        tab.actionButton.isHidden = true
     }
 
     override var inputAccessoryView: UIView? {
@@ -70,7 +75,7 @@ class ChatController: UICollectionViewController {
     
     func configureUI() {
         collectionView.backgroundColor = .white
-//        configureNavigationBar(withTitle: user.username, prefersLargeTitles: false)
+        navigationItem.title = user.username
         
         collectionView.register(MessageCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.alwaysBounceVertical = true
