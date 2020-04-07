@@ -25,6 +25,7 @@ let REF_USER_REPLIES = DB_REF.child("user-replies")
 let REF_USER_USERNAMES = DB_REF.child("user-usernames")
 let REF_MESSAGES = DB_REF.child("messages")
 let REF_USER_MESSAGES = DB_REF.child("user-messages")
+let REF_USER_FEED = DB_REF.child("user-feeds")
 
 let KEY_EMAIL = "email"
 let KEY_FULLNAME = "fullname"

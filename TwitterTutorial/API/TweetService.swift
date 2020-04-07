@@ -11,69 +11,85 @@ import Firebase
 struct TweetService {
     static let shared = TweetService()
     
-    func uploadTweet(caption: String, type: UploadTweetConfiguration,
-                     completion: @escaping(DatabaseCompletion)) {
+    func uploadTweet(caption: String, type: UploadTweetConfiguration, completion: @escaping(DatabaseCompletion)) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        
-        var values = ["uid": uid,
-                      "timestamp": Int(NSDate().timeIntervalSince1970),
-                      "likes": 0,
-                      "retweets": 0,
-                      "caption": caption] as [String : Any]
-        
+        let values = [KEY_CAPTION: caption,
+                      KEY_TIMESTAMP: Int(NSDate().timeIntervalSince1970),
+                      KEY_LIKES: 0,
+                      KEY_UID: uid,
+                      KEY_RETWEET_COUNT: 0] as [String : Any]
+                
         switch type {
-        case .tweet:
-            REF_TWEETS.childByAutoId().updateChildValues(values) { (err, tweetRef) in
-                // update user-tweet structure after tweet upload completes
-                guard let tweetID = tweetRef.key else { return }
-                REF_USER_TWEETS.child(uid).updateChildValues([tweetID: 1]) { (err, userTweetRef) in
-                    completion(err, tweetRef)
-                }
-            }
         case .reply(let tweet):
-            values["replyingTo"] = tweet.user.username
-            
-            REF_TWEET_REPLIES.child(tweet.tweetID).childByAutoId()
-                .updateChildValues(values) { (err, ref) in
-                    guard let replyKey = ref.key else { return }
-                    REF_USER_REPLIES.child(uid).updateChildValues([tweet.tweetID: replyKey], withCompletionBlock: completion)
+            REF_TWEET_REPLIES.child(tweet.tweetID).childByAutoId().updateChildValues(values) { (err, ref) in
+                guard let replyKey = ref.key else { return }
+                REF_USER_REPLIES.child(uid).updateChildValues([tweet.tweetID: replyKey], withCompletionBlock: completion)
+            }
+        case .tweet:
+            REF_TWEETS.childByAutoId().updateChildValues(values) { (err, ref) in
+                guard let key = ref.key else { return }
+                REF_USER_TWEETS.child(uid).updateChildValues([key: 1], withCompletionBlock: completion)
             }
         }
     }
+
+/// old configuration for fetching
+//    func fetchTweets(completion: @escaping([Tweet]) -> Void) {
+//        var tweets = [Tweet]()
+//        guard let currentUid = Auth.auth().currentUser?.uid else { return }
+//
+//        REF_USER_FOLLOWING.child(currentUid).observe(.childAdded) { snapshot in
+//            let followingUid = snapshot.key
+//
+//            REF_USER_TWEETS.child(followingUid).observe(.childAdded) { snapshot in
+//                let tweetID = snapshot.key
+//
+//                self.fetchTweet(withTweetID: tweetID) { tweet in
+//                    tweets.append(tweet)
+//                    completion(tweets)
+//                }
+//            }
+//        }
+//
+//        REF_USER_TWEETS.child(currentUid).observe(.childAdded) { snapshot in
+//            let tweetID = snapshot.key
+//
+//            self.fetchTweet(withTweetID: tweetID) { tweet in
+//                tweets.append(tweet)
+//                completion(tweets)
+//            }
+//        }
+//    }
+//
+//    func fetchTweets(forUser user: User, completion: @escaping([Tweet]) -> Void) {
+//        var tweets = [Tweet]()
+//        REF_USER_TWEETS.child(user.uid).observe(.childAdded) { snapshot in
+//            let tweetID = snapshot.key
+//
+//            self.fetchTweet(withTweetID: tweetID) { tweet in
+//                tweets.append(tweet)
+//                completion(tweets)
+//            }
+//        }
+//    }
     
     func fetchTweets(completion: @escaping([Tweet]) -> Void) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
         var tweets = [Tweet]()
-        guard let currentUid = Auth.auth().currentUser?.uid else { return }
-                
-        REF_USER_FOLLOWING.child(currentUid).observe(.childAdded) { snapshot in
-            let followingUid = snapshot.key
-            
-            REF_USER_TWEETS.child(followingUid).observe(.childAdded) { snapshot in
-                let tweetID = snapshot.key
-                
-                self.fetchTweet(withTweetID: tweetID) { tweet in
-                    tweets.append(tweet)
-                    completion(tweets)
-                }
-            }
-        }
-        
-        REF_USER_TWEETS.child(currentUid).observe(.childAdded) { snapshot in
-            let tweetID = snapshot.key
-            
-            self.fetchTweet(withTweetID: tweetID) { tweet in
+
+        REF_USER_FEED.child(uid).observe(.childAdded) { snapshot in
+            self.fetchTweet(withTweetID: snapshot.key) { tweet in
                 tweets.append(tweet)
                 completion(tweets)
             }
         }
     }
     
-    func fetchTweets(forUser user: User, completion: @escaping([Tweet]) -> Void) {
+    func fetchTweets(withUid uid: String, completion: @escaping([Tweet]) -> Void) {
         var tweets = [Tweet]()
-        REF_USER_TWEETS.child(user.uid).observe(.childAdded) { snapshot in
-            let tweetID = snapshot.key
-            
-            self.fetchTweet(withTweetID: tweetID) { tweet in
+        
+        REF_USER_TWEETS.child(uid).observe(.childAdded) { snapshot in
+            self.fetchTweet(withTweetID: snapshot.key) { tweet in
                 tweets.append(tweet)
                 completion(tweets)
             }
