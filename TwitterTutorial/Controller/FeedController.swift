@@ -56,13 +56,9 @@ class FeedController: UICollectionViewController {
     // MARK: - API
     
     func fetchTweets() {
-        collectionView.refreshControl?.beginRefreshing()
-        
         TweetService.shared.fetchTweets { tweets in
             self.tweets = tweets.sorted(by: { $0.timestamp > $1.timestamp })
             self.checkIfUserLikedTweets()
-            
-            self.collectionView.refreshControl?.endRefreshing()
         }
     }
     
@@ -111,7 +107,6 @@ class FeedController: UICollectionViewController {
         profileImageView.sd_setImage(with: user.profileImageUrl, completed: nil)
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: profileImageView)
-        
     }
 }
 

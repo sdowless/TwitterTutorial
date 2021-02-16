@@ -8,8 +8,6 @@
 
 import Firebase
 
-import Firebase
-
 struct Message {
     let text: String
     let toId: String
