@@ -36,12 +36,13 @@ enum MenuOptions: Int, CustomStringConvertible, CaseIterable {
 
 private let reuseIdentifer = "MenuOptionCell"
 
-class MenuController: UITableViewController {
+class MenuController: UIViewController {
     
     // MARK: - Properties
     
     private var user: User
     weak var delegate: MenuControllerDelegate?
+    private var tableView = UITableView()
     
     private lazy var headerView: MenuHeader = {
         let frame = CGRect(x: 0, y: 0, width: self.view.frame.width - 80, height: 180)
@@ -54,7 +55,7 @@ class MenuController: UITableViewController {
     
     init(user: User) {
         self.user = user
-        super.init(style: .plain)
+        super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
@@ -73,24 +74,27 @@ class MenuController: UITableViewController {
         tableView.separatorStyle = .none
         tableView.rowHeight = 72
         tableView.tableHeaderView = headerView
+        
+        view.addSubview(tableView)
+        tableView.addConstraintsToFillView(view)
     }
 }
 
 // MARK: - UITableViewDelegate/DataSource
 
-extension MenuController {
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+extension MenuController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return MenuOptions.allCases.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifer, for: indexPath) as! MenuOptionCell
         let option = MenuOptions(rawValue: indexPath.row)
         cell.option = option
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let option = MenuOptions(rawValue: indexPath.row) else { return }
         delegate?.didSelect(option: option)
     }
